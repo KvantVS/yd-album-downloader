@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Скачивание альбомов Яндекс.Диска</title>
+<link rel="stylesheet" href="downloader.css">
+</head>
+<body>
+<main>
+  <h1>Скачивание альбомов Яндекс.Диска</h1>
+
+  <section>
+    <h2>Куда сохранять</h2>
+    <div class="row">
+      <button id="pickDir">Выбрать папку</button>
+      <button id="grantDir" hidden>Разрешить доступ к папке</button>
+      <span id="dirName" class="muted">папка не выбрана</span>
+    </div>
+    <p class="hint">Внутри появятся подпапки с названиями альбомов. Недопустимые символы заменяются на «_».</p>
+  </section>
+
+  <section>
+    <h2>Альбомы</h2>
+    <div class="row">
+      <button id="loadAlbums">Загрузить список альбомов</button>
+      <input id="albumFilter" type="search" placeholder="Фильтр по названию" aria-label="Фильтр по названию">
+      <button id="selAll">Выбрать все</button>
+      <button id="selNone">Снять выбор</button>
+      <span id="albumCount" class="muted"></span>
+    </div>
+    <div id="albumList" class="albumlist" role="group" aria-label="Альбомы">
+      <p class="muted empty">Нажмите «Загрузить список альбомов».</p>
+    </div>
+    <details>
+      <summary>Добавить альбом вручную (ссылка или ID)</summary>
+      <textarea id="albums" rows="3" spellcheck="false"
+        placeholder="По одному на строку. Своё название папки: Отпуск | https://disk.yandex.ru/client/albums/…"></textarea>
+    </details>
+    <div class="row">
+      <button id="start" class="primary">Скачать</button>
+      <button id="retry">Повторить: не ORIGINAL и неудачные</button>
+      <button id="stop" disabled>Остановить</button>
+    </div>
+    <div class="progress" aria-live="polite">
+      <div class="bar"><div id="barFill"></div></div>
+      <span id="progressText" class="muted"></span>
+    </div>
+  </section>
+
+  <section>
+    <h2>Статистика</h2>
+    <div class="tablewrap">
+      <table id="stats">
+        <thead>
+          <tr>
+            <th>Альбом</th><th>Всего фото</th><th>ORIGINAL</th>
+            <th>Меньший размер</th><th>Не скачано</th><th>Видео (пропущено)</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+        <tfoot></tfoot>
+      </table>
+    </div>
+    <div class="row">
+      <button id="exportCsv">Экспорт лога (CSV)</button>
+      <button id="clearDb" class="danger">Очистить базу</button>
+    </div>
+  </section>
+
+  <section>
+    <h2>Журнал</h2>
+    <pre id="log" aria-live="polite"></pre>
+  </section>
+</main>
+<script src="downloader.js"></script>
+</body>
+</html>
